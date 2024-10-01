@@ -1,18 +1,23 @@
-# MySQl - Proiect final - baza de date pentru o agenție imobiliară care își desfășoară activitatea în județul Cluj
+# MySQl - Proiect final - baza de date pentru o agenție imobiliară 
+
+Scopul acestui proiect este de a prezenta cunoștiințele acumulate pe parcursul cursului de Testare Manuală. 
+Astfel, am ales să creez o bază de date pentru o agenție imobiliară care își desfășoară activitatea în județul Cluj. Activitatea presupune închirierea sau vânzarea unor spații imobiliare din cadrul agenției imobiliare.
+
+Structura este următoarea:
+
+## Structura
+
+![image](https://github.com/user-attachments/assets/541fd03c-3214-4f91-bbd7-43c997f65c2e)
 
 
-
-
-
-
-###Tabele
+### Tabele
 
 #### 1. Clienti
-    - id_client int primary key auto_increment,
-		- denumire_client varchar (20),
-		- adresa varchar (70),
-		- telefon int,
-		- cod_fiscal int );
+	- "id_client" (int primary key auto_increment),
+	- "denumire_client" (varchar (20)),
+	- adresa varchar (70),
+	- telefon int,
+	- cod_fiscal int );
 
 - creare baza de date cu denumirea Magazin 
 	create database Magazin;
