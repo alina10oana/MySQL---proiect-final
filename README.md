@@ -19,16 +19,22 @@ Structura este următoarea:
 	- telefon int,
 	- cod_fiscal int );
 
-- creare baza de date cu denumirea Magazin 
+
+## Database Queries
+
+### DDL (Data Definition Language)
+Am folosit instrucțiuni pentru creare ștergere și modificare bază de date precum și tabelele din cadrul bazei de date. 
+```sql
+#creare baza de date cu denumirea Magazin 
 	create database Magazin;
 
-- stergere baza de date Magazin
+#stergere baza de date Magazin
 	drop database Magazin; 
 
-- creare baza de date cu denumirea Imobiliare2, destinata unei agentii imobiliare 
+#creare baza de date cu denumirea Imobiliare2, destinata unei agentii imobiliare 
 	create database Imobiliare2;
 
-- creare tabela Clienti cu informatii privind clientii societatii
+#creare tabela Clienti cu informatii privind clientii societatii
 	create table Clienti (
 		id_client int primary key auto_increment,
 		denumire_client varchar (20),
@@ -36,7 +42,7 @@ Structura este următoarea:
 		telefon int,
 		cod_fiscal int );
     
-- creare tabela Facturi cu informatii privind facturi    
+#creare tabela Facturi cu informatii privind facturi    
 	create table Facturi (
 		id_factura int primary key auto_increment,
 		nr_factura int,
@@ -44,24 +50,24 @@ Structura este următoarea:
 		valoare int,
 		cod_fiscal int);
  
- - modificarea tabelei Facturi prin adaugarea coloanei id_client si setarea acesteia ca si cheie secundara
+ #modificarea tabelei Facturi prin adaugarea coloanei id_client si setarea acesteia ca si cheie secundara
 	 alter table Facturi 
 	 add column id_client int
 	 alter table Facturi
 	 add foreign key (id_client) references Clienti (id_client);
         
- - creare tabela Contracte cu informatii privind contractele incheiate in cadrul societatii   
+ #creare tabela Contracte cu informatii privind contractele incheiate in cadrul societatii   
 	 create table Contracte (
 		id_contract int primary key auto_increment,
 		nr_contract int,
 		data_contract date ,
 		cod_fiscal int );
         
-  - modificarea tabelei Contracte prin adaugarea coloanei id_client
+ #modificarea tabelei Contracte prin adaugarea coloanei id_client
 	  alter table Contracte
 	  add column id_client int;
       
-  - modificarea tabelei Contracte prin setarea coloanei id_client ca si cheie secundara    
+  #modificarea tabelei Contracte prin setarea coloanei id_client ca si cheie secundara    
 	  alter table Contracte
 	  add foreign key (id_client) references Clienti (id_client);
         
@@ -99,8 +105,10 @@ Structura este următoarea:
     
 	- modificare tabela Imobile prin stergerea coloanei adresa_imobil
 		alter table Imobile
-		drop column adresa_imobil; 
-		
+		drop column adresa_imobil;
+```
+
+### DML (Data Manipulation Language)	
     - populare cu informatii tabela Clienti
 		insert into Clienti (denumire_client, adresa, telefon, cod_fiscal)
 		values ('Popescu Mihai', 'localitate Cluj, strada Eminescu, nr.12', 0747474747, 187122),
