@@ -104,19 +104,20 @@ Am folosit instrucțiuni pentru creare ștergere și modificare bază de date pr
     
     - modificare tabela Contracte prin reordonarea coloanelor denumire_banca si cod_fiscal
 		alter table Contracte 
-		modify	column denumire_banca varchar (40) after data_contract; 
-    
-	- modificare tabela Imobile prin stergerea coloanei adresa_imobil
+		modify	column denumire_banca varchar (40) after data_contract;
+    - stergere coloana pret din tabela Vanzari
+		alter table Vanzari
+		drop column pret;
+    - modificare tabela Imobile prin stergerea coloanei adresa_imobil
 		alter table Imobile
 		drop column adresa_imobil;
 ```
 
 ### DML (Data Manipulation Language)	
-```sql
-
 În scopul utilizării bazei de date, folosind instrucțiuni DML, am populat tabelele cu diverse date pe care le-am considerat necesare.
 De asemenea, am modificat informațiile prin actualizare și ștergere. 
 
+```sql
     - populare cu informatii tabela Clienti
 		insert into Clienti (denumire_client, adresa, telefon, cod_fiscal)
 		values ('Popescu Mihai', 'localitate Cluj, strada Eminescu, nr.12', 0747474747, 187122),
@@ -167,9 +168,7 @@ De asemenea, am modificat informațiile prin actualizare și ștergere.
 
     - stergere informatii din tabela Facturi aferent clientului cu id 4
 		delete from Facturi where id_factura=(4);  
-    - stergere coloana pret din tabela Vanzari
-		alter table Vanzari
-		drop column pret;
+    
 ```
 
   ### DQL (Data Query Language)
