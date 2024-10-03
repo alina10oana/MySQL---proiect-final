@@ -248,7 +248,7 @@ Pentru a simula diferite scenarii care ar putea apare, am creat interogări prin
 		where valoare > (select avg(valoare) from facturi);
 ```
 ## Concluzii
-Proiectul de baze de date la o agenție imobiliară cu activitatea în județul Cluj, a reprezentat un mod de a sintetiza și exersa informațiile parcurse și dobândite în urma cursului de Testare Manuală. În altă ordine de idei, proiectarea bazei de date precum și reprezentarea relațiilor dintre tabele consider că este unul dintre cele mai importante aspecte de realizat în crearea bazei de date. Prin introducerea unor date de test cât mai reale ilustrează necesitatea procesului de testare cât mai aproape de realitatea aplicației dezvoltate. Folosirea instrumentului MySQL WorkBench a contribuit la executarea în mod cât mai corect a interogărilor și aprofundarea cunoștințelor. 
+Proiectul de baze de date la o agenție imobiliară cu activitatea în județul Cluj, a reprezentat un mod de a sintetiza și exersa informațiile parcurse și dobândite în urma cursului de Testare Manuală. În altă ordine de idei, proiectarea bazei de date precum și reprezentarea relațiilor dintre tabele consider că este unul dintre cele mai importante aspecte de realizat în crearea bazei de date. Prin introducerea unor date de test cât mai reale ilustrează necesitatea procesului de testare cât mai aproape de realitatea aplicației dezvoltate. Folosirea instrumentului MySQL WorkBench a contribuit la executarea în mod cât mai corect a interogărilor și aprofundarea cunoștințelor privind testare dar și baze de date. 
 
 
 
