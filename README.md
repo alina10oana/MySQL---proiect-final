@@ -1,4 +1,4 @@
-# MySQl - Proiect final - baza de date pentru o agenție imobiliară 
+# MySQL - Proiect final - baza de date pentru o agenție imobiliară 
 
 Scopul acestui proiect este de a prezenta cunoștiințele acumulate pe parcursul cursului de Testare Manuală. 
 Astfel, am ales să creez o bază de date pentru o agenție imobiliară care își desfășoară activitatea în județul Cluj. Activitatea presupune închirierea sau vânzarea unor spații imobiliare din cadrul agenției imobiliare.
@@ -49,29 +49,15 @@ Am folosit instrucțiuni pentru creare ștergere și modificare bază de date pr
 		serie_factura varchar (5),
 		valoare int,
 		cod_fiscal int);
- 
- #modificarea tabelei Facturi prin adaugarea coloanei id_client si setarea acesteia ca si cheie secundara
-	 alter table Facturi 
-	 add column id_client int
-	 alter table Facturi
-	 add foreign key (id_client) references Clienti (id_client);
-        
+
  #creare tabela Contracte cu informatii privind contractele incheiate in cadrul societatii   
 	 create table Contracte (
 		id_contract int primary key auto_increment,
 		nr_contract int,
 		data_contract date ,
 		cod_fiscal int );
-        
- #modificarea tabelei Contracte prin adaugarea coloanei id_client
-	  alter table Contracte
-	  add column id_client int;
-      
-  #modificarea tabelei Contracte prin setarea coloanei id_client ca si cheie secundara    
-	  alter table Contracte
-	  add foreign key (id_client) references Clienti (id_client);
-        
-    - creare tabela Imobile cu informatii privind imobilele existente si supuse ofertei de vanzare/inchiriere a societatii   
+
+#creare tabela Imobile cu informatii privind imobilele existente si supuse ofertei de vanzare/inchiriere a societatii   
 	 create table Imobile (
 		id_imobil int primary key auto_increment,
 		nr_contract int,
@@ -79,9 +65,9 @@ Am folosit instrucțiuni pentru creare ștergere și modificare bază de date pr
 		suprafata_imobil int,
 		localitate_spatiu varchar (30),
 		adresa_imobil varchar (70), 
-		foreign key (nr_contract) references Contracte (id_contract));   
-        
-     - creare tabela Vanzari cu informatii privind imobilele vandute   
+		foreign key (nr_contract) references Contracte (id_contract));
+
+#creare tabela Vanzari cu informatii privind imobilele vandute   
 	 create table Vanzari (
 		id_vanzare int primary key auto_increment, 
 		id_imobil int,
@@ -89,6 +75,23 @@ Am folosit instrucțiuni pentru creare ștergere și modificare bază de date pr
 		pret int,
 		data_vanzare date,
 		foreign key (id_imobil) references Imobile (id_imobil));  
+
+ #modificarea tabelei Facturi prin adaugarea coloanei id_client si setarea acesteia ca si cheie secundara
+	 alter table Facturi 
+	 add column id_client int
+	 alter table Facturi
+	 add foreign key (id_client) references Clienti (id_client);
+        
+        
+ #modificarea tabelei Contracte prin adaugarea coloanei id_client
+	  alter table Contracte
+	  add column id_client int;
+      
+ #modificarea tabelei Contracte prin setarea coloanei id_client ca si cheie secundara    
+	  alter table Contracte
+	  add foreign key (id_client) references Clienti (id_client);
+        
+
                 
 	- corelare tabela vanzari cu tabela contracte prin adaugarea unei noi chei secundare 
         alter table vanzari
@@ -109,6 +112,11 @@ Am folosit instrucțiuni pentru creare ștergere și modificare bază de date pr
 ```
 
 ### DML (Data Manipulation Language)	
+```sql
+
+În scopul utilizării bazei de date, folosind instrucțiuni DML, am populat tabelele cu diverse date pe care le-am considerat necesare.
+De asemenea, am modificat informațiile prin actualizare și ștergere. 
+
     - populare cu informatii tabela Clienti
 		insert into Clienti (denumire_client, adresa, telefon, cod_fiscal)
 		values ('Popescu Mihai', 'localitate Cluj, strada Eminescu, nr.12', 0747474747, 187122),
@@ -122,26 +130,8 @@ Am folosit instrucțiuni pentru creare ștergere și modificare bază de date pr
 		(654, 'ABAC', 1500, 985621, 2),
 		(2016, 'KVJ', 250000, 647832, 3),
 		(80, 'SOET', 15000, 1035269, 4);
-    
-    - interogare simplă pe toată tabela Facturi;
-		select * from Facturi;
-    
-    - Returnarea valorilor facturilor pe coloana id_client
-		select valoare, id_client from	Facturi;
-    
-    - Returnarea valorilor pentru clientul cu id=1
-		select valoare from Facturi where id_client=1;
-        
-    - interogare simplă pe toată tabela Clienti
-		select * from Clienti;
-    
-    - stergere informatii din tabela Facturi aferent clientului cu id 4
-		delete from Facturi where id_factura=(4);
-   
-   - interogare simplă pe toată tabela Contracte;
-		select * from Contracte;
-    
-    - populare cu informatii tabela Contracte
+      
+     - populare cu informatii tabela Contracte
 		insert into Contracte (nr_contract, data_contract, denumire_banca, cod_fiscal, id_client)
 		values (25, '2024-01-07', 'BT', 187122, 1),
 		(35, '2023-10-27', 'Raiffeissen Bank', 985621, 2),
@@ -149,14 +139,8 @@ Am folosit instrucțiuni pentru creare ștergere și modificare bază de date pr
 		(39, '2023-12-02', 'BCR', 647832, 3),
 		(101, '2022-05-06', 'BRD Societe General', 1035269, 1),
 		(52, '2023-04-10', 'OTP BANK', 985621, 2);
-    
-    - returnarea clientilor doar pentru cei care au contractul incepand cu anul 2023 la banca BCR
-		select * from Contracte where denumire_banca='BCR' and data_contract like '2023%';
-    
-    - interogare simpla pe toata tabela Imobile;
-		select * from Imobile;
-    
-    - populare cu informatii tabela Imobile
+
+      - populare cu informatii tabela Imobile
 		insert into Imobile (nr_contract, tip_imobil, suprafata_imobil,localitate_spatiu)
 		values (1, 'casa', 100, 'Dej'),
 		(2, 'garsoniera', 25, 'Cluj-Napoca'),
@@ -166,18 +150,8 @@ Am folosit instrucțiuni pentru creare ștergere și modificare bază de date pr
 		(4, 'spatiu', 350, 'Cluj-Napoca'),
 		(4, 'spatiu', 240, 'Cluj-Napoca'),
 		(4, 'spatiu', 500, 'Cluj-Napoca');
-    
-    - actualizare coloana suprafata_imobil prin cresterea cu 10 a suprafetei
-		update Imobile set suprafata_imobil=suprafata_imobil+10;
-        
-    - interogare simpla pe toata tabela Imobile
-		select * from Imobile;
-    
-    - stergere coloana pret din tabela Vanzari
-		alter table Vanzari
-		drop column pret;
-    
-    - populare cu informatii tabela Vanzari
+
+       - populare cu informatii tabela Vanzari
 		insert into Vanzari (id_imobil, nr_contract, data_vanzare)
 		values (9, 1, '2024-01-31'),
 		(10, 2, '2023-10-30'),
@@ -187,6 +161,40 @@ Am folosit instrucțiuni pentru creare ștergere și modificare bază de date pr
 		(14, 4, '2023-12-29'),
 		(15, 4, '2023-12-28'),
 		(16, 4, '2023-12-20');
+
+    - actualizare coloana suprafata_imobil prin cresterea cu 10 a suprafetei
+		update Imobile set suprafata_imobil=suprafata_imobil+10;
+
+    - stergere informatii din tabela Facturi aferent clientului cu id 4
+		delete from Facturi where id_factura=(4);  
+    - stergere coloana pret din tabela Vanzari
+		alter table Vanzari
+		drop column pret;
+```
+
+  ### DQL (Data Query Language)
+    
+    Vizualizarea informațiilor din cadrul tabelelor 
+   ```sql
+    - interogare simplă pe toată tabela Facturi;
+		select * from Facturi;
+    - interogare simpla pe toata tabela Imobile;
+		select * from Imobile;
+     - interogare simplă pe toată tabela Clienti
+		select * from Clienti;
+     - interogare simplă pe toată tabela Contracte;
+		select * from Contracte;
+
+    - returnarea valorilor facturilor pe coloana id_client
+		select valoare, id_client from	Facturi;
+    - returnarea valorilor pentru clientul cu id=1
+		select valoare from Facturi where id_client=1;
+    - returnarea clientilor doar pentru cei care au contractul incepand cu anul 2023 la banca BCR
+		select * from Contracte where denumire_banca='BCR' and data_contract like '2023%';
+
+   
+    
+   
     
     - interogare simpla pe toata tabela Vanzari;
 		select * from Vanzari;
