@@ -11,11 +11,18 @@ Schema bazei de date este următoarea:
 
 ### Tabele
 
-- **tabela Clienti** cu următoarele coloane: id_client, denumire_client, adresa, telefon, cod_fiscal
+- **tabela Clienti** cu următoarele coloane: id_client, denumire_client, adresa, telefon, cod_fiscal 
 - **tabela Facturi** cu următoarele coloane: id_factura, nr_factura, serie_factura, valoare, cod_fiscal, id_client
 - **tabela Contracte** cu următoarele coloane: id_contract, nr_contract, data_contract, cod_fiscal, id_client
 - **tabela Imobile** cu următoarele coloane: id_imobil, nr_contract, tip_imobil, suprafata_imobil, localitate_spatiu, adresa_imobil
 - **tabela Vanzari** cu următoarele coloane: id_vanzare, id_imobil, nr_contract, pret, data_vanzare
+
+Relațiile de conectare între tabele sunt următoarele:
+- **tabela Clienti** este conectată printr-o relație one-to-many cu **tabela Facturi** prin cheia id_client
+- **tabela Clienti** este conectată printr-o relație one-to-many cu **tabela Contracte** prin cheia id_client
+- **tabela Contracte** este conectată printr-o relație one-to-many cu **tabela Vanzari** prin cheia id_imobil
+- **tabela Contracte** este conectată printr-o relație one-to-one cu **tabela Imobile** prin cheia nr_contract
+- **tabela Imobile** este conectată printr-o relație one-to-many cu **tabela Vanzari** prin cheia id_imobil
 	
 
 
@@ -241,3 +248,9 @@ Pentru a simula diferite scenarii care ar putea apare, am creat interogări prin
 		where valoare > (select avg(valoare) from facturi);
 ```
 ## Concluzii
+Proiectul de baze de date la o agenție imobiliară cu activitatea în județul Cluj, a reprezentat un mod de a sintetiza și exersa informațiile parcurse și dobândite în urma cursului de Testare Manuală. În altă ordine de idei, proiectarea bazei de date precum și reprezentarea relațiilor dintre tabele consider că este unul dintre cele mai importante aspecte de realizat în crearea bazei de date. Prin introducerea unor date de test cât mai reale ilustrează necesitatea procesului de testare cât mai aproape de realitatea aplicației dezvoltate. Folosirea instrumentului MySQL WorkBench a contribuit la executarea în mod cât mai corect a interogărilor și aprofundarea cunoștințelor. 
+
+
+
+
+
